@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --color-ink: #000000;
+  --color-ink-2: #545454;
+  --color-ink-3: #6b6b6b;
+  --color-ink-4: #afafaf;
+  --color-ink-5: #c2c2c2;
+  --color-fill: #eeeeee;
+  --color-fill-2: #f6f6f6;
+  --color-fill-3: #f8f8f8;
+  --color-line: #e2e2e2;
+  --color-accent: #276ef1;
+  --color-navy: #050c4d;
+  --color-mint: #32bb78;
+}
+
+@layer base {
+  html, body { @apply bg-neutral-200 text-ink antialiased; }
+  body { -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* transição entre telas */
+.page-enter-active, .page-leave-active { transition: opacity .18s ease, transform .18s ease; }
+.page-enter-from { opacity: 0; transform: translateX(16px); }
+.page-leave-to { opacity: 0; transform: translateX(-16px); }
+
+.sheet-enter-active, .sheet-leave-active { transition: opacity .25s ease; }
+.sheet-enter-active .sheet-panel, .sheet-leave-active .sheet-panel { transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.sheet-enter-from, .sheet-leave-to { opacity: 0; }
+.sheet-enter-from .sheet-panel, .sheet-leave-to .sheet-panel { transform: translateY(100%); }
+
+.toast-enter-active, .toast-leave-active { transition: all .25s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translate(-50%, 12px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}
